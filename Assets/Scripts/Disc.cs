@@ -33,6 +33,11 @@ public class Disc : MonoBehaviour
 	{
 		get { return velocity; }
 	}
+
+	public float Height
+	{
+		get { return height; }
+	}
 	
 	
 	void Start ()
@@ -52,6 +57,10 @@ public class Disc : MonoBehaviour
 		StartCoroutine("SpinDisc");
 		
 		height = 1f;
+
+		collider.enabled = false;
+
+		Invoke ("EnableCollision", 0.15f);
 	}
 	
 	public void Catch()
@@ -61,6 +70,11 @@ public class Disc : MonoBehaviour
 		height = 1f;
 		
 		StopCoroutine("SpinDisc");
+	}
+
+	private void EnableCollision()
+	{
+		collider.enabled = true;
 	}
 	
 	
