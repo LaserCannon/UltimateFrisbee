@@ -20,14 +20,14 @@ public class ZoomButton : MonoBehaviour
 	
 	void Update()
 	{
-		renderer.enabled = GameController.main.HasDisc!=null;
+		GetComponent<Renderer>().enabled = GameController.main.HasDisc!=null;
 		
 		if(Input.GetMouseButtonUp(0) && GameController.main.HasDisc!=null)
 		{
 			RaycastHit hit = new RaycastHit();
-			if(Physics.Raycast(FollowCamera.main.camera.ScreenPointToRay(Input.mousePosition),out hit))
+			if(Physics.Raycast(FollowCamera.main.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition),out hit))
 			{
-				if(hit.collider==collider)
+				if(hit.collider==GetComponent<Collider>())
 				{
 					Toggle();
 				}
@@ -35,7 +35,7 @@ public class ZoomButton : MonoBehaviour
 		}
 		
 		
-		FollowCamera.main.camera.orthographicSize = Mathf.Lerp(FollowCamera.main.camera.orthographicSize,targetCamSize,Time.deltaTime*10f);
+		FollowCamera.main.GetComponent<Camera>().orthographicSize = Mathf.Lerp(FollowCamera.main.GetComponent<Camera>().orthographicSize,targetCamSize,Time.deltaTime*10f);
 	
 	}
 	

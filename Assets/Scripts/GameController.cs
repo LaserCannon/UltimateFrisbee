@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour
 	private void TurnOver()
 	{
 		state = GameState.InPlay;
-		currentDisc.collider.enabled = true;
+		currentDisc.GetComponent<Collider>().enabled = true;
 		
 		Team teamToTurnoverTo = null;
 		if(lastHadDisc==null || lastHadDisc.MyTeam==aiTeam)
@@ -152,7 +152,7 @@ public class GameController : MonoBehaviour
 		playerTeam.UpfieldDir = -playerTeam.UpfieldDir;
 		aiTeam.UpfieldDir = -playerTeam.UpfieldDir;
 		
-		audio.PlayOneShot(ScoreSound);
+		GetComponent<AudioSource>().PlayOneShot(ScoreSound);
 		
 		if(hasDisc.MyTeamSide==TeamSide.PlayerSide)
 		{
@@ -188,12 +188,12 @@ public class GameController : MonoBehaviour
 	{
 		if(hasDisc==null || force)
 		{
-			currentDisc.collider.enabled = true;
+			currentDisc.GetComponent<Collider>().enabled = true;
 		
-			Physics.IgnoreCollision(player.collider,currentDisc.collider);
+			Physics.IgnoreCollision(player.GetComponent<Collider>(),currentDisc.GetComponent<Collider>());
 			if(lastHadDisc!=null)
 			{
-				Physics.IgnoreCollision(lastHadDisc.collider,currentDisc.collider,false);
+				Physics.IgnoreCollision(lastHadDisc.GetComponent<Collider>(),currentDisc.GetComponent<Collider>(),false);
 			}
 			
 			hasDisc = player;
@@ -203,7 +203,7 @@ public class GameController : MonoBehaviour
 			
 			currentDisc.Catch();
 			
-			currentDisc.rigidbody.isKinematic = true;
+			currentDisc.GetComponent<Rigidbody>().isKinematic = true;
 			currentDisc.transform.position = player.transform.position + Vector3.forward*0.4f + Vector3.right*0.4f;
 			
 			playerTeam.OnDiscCatch(player);
@@ -220,13 +220,13 @@ public class GameController : MonoBehaviour
 	{
 		if(lastHadDisc!=null)
 		{
-			Physics.IgnoreCollision(lastHadDisc.collider,currentDisc.collider,false);
+			Physics.IgnoreCollision(lastHadDisc.GetComponent<Collider>(),currentDisc.GetComponent<Collider>(),false);
 		}
 		
 		lastHadDisc = null;
 		hasDisc = null;
 		
-		currentDisc.rigidbody.isKinematic = false;
+		currentDisc.GetComponent<Rigidbody>().isKinematic = false;
 		
 		UIManager.main.Zoom.ZoomIn();
 	}
@@ -235,7 +235,7 @@ public class GameController : MonoBehaviour
 	{
 		hasDisc = null;
 			
-		currentDisc.rigidbody.isKinematic = false;
+		currentDisc.GetComponent<Rigidbody>().isKinematic = false;
 		
 		currentDisc.Throw(direction);
 		

@@ -70,9 +70,9 @@ public class UIManager : MonoBehaviour
 			}
 		}
 		
-		transform.localScale = new Vector3(FollowCamera.main.camera.orthographicSize/15f,
-											FollowCamera.main.camera.orthographicSize/15f,
-											FollowCamera.main.camera.orthographicSize/15f);
+		transform.localScale = new Vector3(FollowCamera.main.GetComponent<Camera>().orthographicSize/15f,
+											FollowCamera.main.GetComponent<Camera>().orthographicSize/15f,
+											FollowCamera.main.GetComponent<Camera>().orthographicSize/15f);
 	}
 	
 	private void PointArrowToPlayer(Renderer arrow, Player player)
@@ -80,8 +80,8 @@ public class UIManager : MonoBehaviour
 		Vector3 centerToPlayer = player.transform.position-FollowCamera.main.transform.position;
 		centerToPlayer.y = 0f;
 		
-		float xw = FollowCamera.main.camera.orthographicSize * FollowCamera.main.camera.aspect;
-		float yw = FollowCamera.main.camera.orthographicSize;
+		float xw = FollowCamera.main.GetComponent<Camera>().orthographicSize * FollowCamera.main.GetComponent<Camera>().aspect;
+		float yw = FollowCamera.main.GetComponent<Camera>().orthographicSize;
 		
 		if(	Mathf.Abs(centerToPlayer.z) > yw ||
 			Mathf.Abs(centerToPlayer.x) > xw)

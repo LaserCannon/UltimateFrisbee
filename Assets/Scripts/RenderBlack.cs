@@ -18,8 +18,8 @@ public class RenderBlack : MonoBehaviour {
 	}
 	
 	void Start() {
-		if (this.renderer) {
-			originalMaterial = this.renderer.material;
+		if (this.GetComponent<Renderer>()) {
+			originalMaterial = this.GetComponent<Renderer>().material;
 		}
 	}
 	
@@ -27,15 +27,15 @@ public class RenderBlack : MonoBehaviour {
 	void OnWillRenderObject() {
 		if(Camera.current == cam) {
 			if(originalMaterial == null) {
-				originalMaterial = this.renderer.material;
+				originalMaterial = this.GetComponent<Renderer>().material;
 			}
-			this.renderer.material = shadowMaterial;
+			this.GetComponent<Renderer>().material = shadowMaterial;
 		}
 	}
 	
 	void OnRenderObject() {
-		if (this.renderer) {
-			this.renderer.material = originalMaterial;
+		if (this.GetComponent<Renderer>()) {
+			this.GetComponent<Renderer>().material = originalMaterial;
 		}
 	}
 	

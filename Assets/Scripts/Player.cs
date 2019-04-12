@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
 		{
 			GameController.main.GrabDisc(this);
 			
-			audio.PlayOneShot(CatchClip);
+			GetComponent<AudioSource>().PlayOneShot(CatchClip);
 		}
 	}
 	
@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
 			
 			GameController.main.ReleaseDisc(direction);
 		
-			audio.PlayOneShot(ThrowClip);
+			GetComponent<AudioSource>().PlayOneShot(ThrowClip);
 		
 			if(MyTeamSide==TeamSide.PlayerSide)
 			{

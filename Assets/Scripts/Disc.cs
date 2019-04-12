@@ -58,7 +58,7 @@ public class Disc : MonoBehaviour
 		
 		height = 1f;
 
-		collider.enabled = false;
+		GetComponent<Collider>().enabled = false;
 
 		Invoke ("EnableCollision", 0.15f);
 	}
@@ -74,7 +74,7 @@ public class Disc : MonoBehaviour
 
 	private void EnableCollision()
 	{
-		collider.enabled = true;
+		GetComponent<Collider>().enabled = true;
 	}
 	
 	
@@ -90,7 +90,7 @@ public class Disc : MonoBehaviour
 		
 		if(height<=0f && oldHeight>0f)
 		{
-			audio.PlayOneShot(LandSound);
+			GetComponent<AudioSource>().PlayOneShot(LandSound);
 		}
 			
 		if(height>0)
@@ -108,7 +108,7 @@ public class Disc : MonoBehaviour
 			StopCoroutine("SpinDisc");
 		}
 		
-		if(!rigidbody.isKinematic)
+		if(!GetComponent<Rigidbody>().isKinematic)
 		{
 			transform.position += Time.deltaTime * velocity;
 		}
@@ -154,7 +154,7 @@ public class Disc : MonoBehaviour
 	{
 		if(col.collider.tag=="Wall")
 		{
-			audio.PlayOneShot(HitWallSound);
+			GetComponent<AudioSource>().PlayOneShot(HitWallSound);
 			
 			velocity = Vector3.Reflect(velocity,col.contacts[0].normal)/2f;
 		}

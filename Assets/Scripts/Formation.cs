@@ -97,7 +97,7 @@ public class Formation : MonoBehaviour
 	
 	public static Vector2 ScreenPointToCoordinates(Vector2 screenPos)
 	{
-		Vector3 worldPos = FollowCamera.main.camera.ScreenToWorldPoint(screenPos);
+		Vector3 worldPos = FollowCamera.main.GetComponent<Camera>().ScreenToWorldPoint(screenPos);
 		return new Vector2(worldPos.x,worldPos.z);
 	}
 	
